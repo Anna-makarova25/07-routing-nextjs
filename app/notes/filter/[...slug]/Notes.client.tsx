@@ -20,6 +20,7 @@ interface NotesClientProps {
 export default function NotesClient({ tag }: NotesClientProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
+  if (tag === 'all') tag = undefined;
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const handleSearch = useDebouncedCallback((query: string) => {
