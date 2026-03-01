@@ -1,3 +1,5 @@
+'use client';
+
 import { fetchNoteById } from '@/lib/api';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
