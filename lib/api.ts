@@ -27,10 +27,10 @@ export const fetchNotes = async (
 ): Promise<ApiResponse> => {
   const response = await noteApi.get<ApiResponse>('/notes', {
     params: {
-      search: searchText,
+      search: searchText || undefined,
       page: page,
       perPage: perPage,
-      tag: tag,
+      tag: tag || undefined,
     },
   });
   return response.data;

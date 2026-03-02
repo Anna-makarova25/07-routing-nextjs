@@ -14,13 +14,12 @@ import { fetchNotes } from '@/lib/api';
 import { useDebouncedCallback } from 'use-debounce';
 
 interface NotesClientProps {
-  tag: string | undefined;
+  tag: string;
 }
 
 export default function NotesClient({ tag }: NotesClientProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
-  if (tag === 'all') tag = undefined;
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const handleSearch = useDebouncedCallback((query: string) => {
@@ -30,7 +29,7 @@ export default function NotesClient({ tag }: NotesClientProps) {
 
   const { data, isSuccess, isLoading, isError } = useQuery({
     queryKey: ['notes', searchQuery, page, tag],
-    queryFn: () => fetchNotes(searchQuery, page, 12, tag || ''),
+    queryFn: () => fetchNotes(searchQuery, page, 12, tag === 'all' ? '' : tag),
     staleTime: 1000 * 60 * 5, // 5 minutes
     placeholderData: keepPreviousData,
   });

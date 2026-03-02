@@ -4,7 +4,7 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import NotesClient from '@/app/notes/filter/[...slug]/Notes.client';
+import NotesClient from './Notes.client';
 
 interface Props {
   params: Promise<{ slug: string[] }>;
@@ -18,7 +18,7 @@ export default async function Notes({ params }: Props) {
 
   await queryClient.prefetchQuery({
     queryKey: ['notes', '', 1, tag],
-    queryFn: () => fetchNotes('', 1, 12, tag),
+    queryFn: () => fetchNotes('', 1, 12, tag === 'all' ? '' : tag),
   });
 
   return (
