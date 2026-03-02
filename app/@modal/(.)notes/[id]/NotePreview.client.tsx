@@ -20,6 +20,14 @@ export default function NotePreview() {
   return (
     <Modal onClose={() => router.back()}>
       <div className={css.container}>
+        <button
+          type="button"
+          className={css.backBtn}
+          onClick={() => router.back()}
+          aria-label="Close preview"
+        >
+          Close
+        </button>
         <div className={css.item}>
           <div className={css.header}>
             <h2>{data?.title}</h2>
